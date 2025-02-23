@@ -39,7 +39,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `http://localhost/gatsby-practice/graphql`, // WordPressのURL
+        url: `https://takayama.cloudfree.jp/portfolio2/graphql`, // WordPressのURL
         html: {
           useGatsbyImage: true, // Gatsby Imageプラグインを使用
         },
