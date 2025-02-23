@@ -1,0 +1,131 @@
+.top-box .top-box__title{
+	font-size:2rem;
+	font-weight:600;
+	text-align: center;
+	text-shadow:2px 2px 4px rgba(58, 58, 59, 0.8);
+	color:#FFFFFF;
+	display: block;
+	padding:3rem 0;
+}
+
+@media (min-width:1200px) {
+	.top-box .top-box__title{
+		font-size:2rem;
+		padding:4rem 0;
+	}
+}
+
+section h2{
+	font-size: 2rem;
+	font-weight:600;
+	margin-top:3rem;
+}
+
+section .post-categories{
+	width: fit-content;
+	padding-left: 0;
+}
+
+section .post-categories li{
+	width: fit-content;
+	margin-right:1rem;
+}
+
+section .category-box{
+	margin-top:1rem;
+}
+
+section .category-box span{
+	display: inline-block;
+}
+
+
+/* section .wpblockgroup1{
+	background-image:url('./img/top_bg.jpg');
+	background-size:cover;
+	margin-top:2rem;
+	padding:3rem 0;
+} */
+
+section .container .wp-block-group:nth-child(3){
+	border:3px solid #207195;
+	margin:3rem 0 0 0;
+	padding:0 0 2rem 0;
+}
+
+section .container .wp-block-group:nth-child(4){
+	border:3px solid #207195;
+	margin:3rem 0 0 0;
+	padding:0 0 2rem 0;
+}
+
+section .container .wp-block-group:nth-child(5){
+	border:3px solid #207195;
+	margin:3rem 0 0 0;
+	padding:0 0 2rem 0;
+}
+
+section .wp-block-group img{
+	width:100%;
+	height: auto;
+	display: block;
+	margin:0 auto;
+}
+
+@media (min-width:1200px) {
+	section .wp-block-group img{
+		width:60%;
+		height: auto;
+		display: block;
+		margin:0 auto;
+	}
+}
+
+
+section .wp-block-group h2{
+	width:fit-content;
+	color:white;
+	background-color:#6BB7D1;
+	display: block;
+	margin:0;
+	padding:0.5rem 2rem 0.5rem 1rem;
+	clip-path:polygon(0 0, 100% 0, 90% 100%, 0 100%);
+}
+
+section .wp-block-group h3{
+	font-size:1.5rem;
+	font-weight:600;
+	color:#6BB7D1;
+	margin-top:1.5rem;
+	padding:0 15px;
+}
+
+
+section .wp-block-group p{
+	margin-top:1rem;
+	padding:0 15px;
+}
+
+section .wp-block-group h2{
+	width:fit-content;
+	color:white;
+	background-color:#207195;
+	display: block;
+	margin:0;
+	padding:0.5rem 2rem 0.5rem 1rem;
+	clip-path:polygon(0 0, 100% 0, 90% 100%, 0 100%);
+}
+
+section .wp-block-group h3{
+	font-size:1.5rem;
+	font-weight:600;
+	color:#207195;
+	margin-top:1.5rem;
+	padding:0 15px;
+}
+
+
+section .wp-block-group p{
+	margin-top:1rem;
+	padding:0 15px;
+}
