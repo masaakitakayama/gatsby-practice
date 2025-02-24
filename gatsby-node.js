@@ -1,7 +1,7 @@
 const path = require("path");
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+exports.createPages = async ({ graphql, actions, createNodeId, createContentDigest }) => {
+  const { createPage, createNode } = actions;
 
   // /using-dsg ページを生成
   createPage({
@@ -18,6 +18,11 @@ exports.createPages = async ({ graphql, actions }) => {
         nodes {
           id
           slug
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
         }
       }
     }
@@ -37,5 +42,22 @@ exports.createPages = async ({ graphql, actions }) => {
         id: post.id,
       },
     });
+
+    // featuredImage を Buffer として扱う
+    if (post.featuredImage && post.featuredImage.node.sourceUrl) {
+      const imageBuffer = Buffer.from(post.featuredImage.node.sourceUrl);
+
+      const imageNode = {
+        id: createNodeId(`image-${post.id}`),
+        parent: post.id,
+        internal: {
+          type: `ImageBuffer`,
+          contentDigest: createContentDigest(imageBuffer),
+        },
+        buffer: imageBuffer,
+      };
+
+      createNode(imageNode);
+    }
   });
 };
