@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import { StaticImage, GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
+import HTMLReactParser from 'html-react-parser';  // html-to-reactライブラリをインポート
 
 const IndexPage = ({ data }) => {
   const posts = data?.allWpPost?.nodes;
@@ -32,7 +33,7 @@ const IndexPage = ({ data }) => {
             <div className="row align-items-center">
               <div className="col-12 col-md-8 col-xl-3 offset-md-2 offset-xl-0">
                 <div className="image-outer">
-                  <StaticImage className="image" src="../images/about_img.png" alt="" />
+                  <StaticImage className="image" src="../images/about_img.png" alt="M.Tの画像" />
                 </div>
               </div>
               <div className="col-12 col-xl-9">
@@ -53,73 +54,62 @@ const IndexPage = ({ data }) => {
       </section>
 
       {categories.map((category) => (
-      <section key={category}>
-        <div className="container">
-          <h2 className="sub-title">{category}</h2>
-          <ul>
-            <div className="row align-items-center">
-              {posts &&
-                posts
-                  .filter((post) =>
-                    post.categories.nodes.some((node) => node.name === category)
-                  )
-                  .slice(0, 3) // 最新3件に制限
-                  .map((post) => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(
-                      post.content,
-                      'text/html'
-                    );
-                    const firstParagraph = doc.querySelector('p');
-                    let truncatedText = '';
+        <section key={category}>
+          <div className="container">
+            <h2 className="sub-title">{category}</h2>
+            <ul>
+              <div className="row align-items-center">
+                {posts &&
+                  posts
+                    .filter((post) =>
+                      post.categories.nodes.some((node) => node.name === category)
+                    )
+                    .slice(0, 3) // 最新3件に制限
+                    .map((post) => {
+                      // HTMLReactParserでコンテンツから<p>タグを抽出
+                      const parsedContent = HTMLReactParser(post.content);
+                      const firstParagraph = parsedContent.find(
+                        (element) => typeof element === 'object' && element.type === 'p'
+                      );
+                      let truncatedText = '';
 
-                    if (firstParagraph) {
-                      const text = firstParagraph.textContent;
-                      truncatedText =
-                        text.length > 50 ? text.slice(0, 50) + '...' : text;
-                    }
+                      if (firstParagraph && typeof firstParagraph.props.children === 'string') {
+                        const text = firstParagraph.props.children;
+                        truncatedText = text.length > 50 ? text.slice(0, 50) + '...' : text;
+                      }
 
-                    return (
-                      <div className="col-12 col-md-8 col-xl-4" key={post.id}>
-                        <li className="category-item">
-                          <div>
-                            <Link to={`/${post.slug}`}>
-                              {post.featuredImage &&
-                                post.featuredImage.node?.localFile
-                                  ?.childImageSharp?.gatsbyImageData && (
+                      return (
+                        <div className="col-12 col-md-8 col-xl-4" key={post.id}>
+                          <li className="category-item">
+                            <div>
+                              <Link to={`/${post.slug}`}>
+                                {post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData && (
                                   <GatsbyImage
-                                    image={
-                                      post.featuredImage.node.localFile
-                                        .childImageSharp.gatsbyImageData
-                                    }
-                                    alt={post.title}
+                                    image={post.featuredImage.node.localFile.childImageSharp.gatsbyImageData}
+                                    alt={post.title} // 画像のalt属性にタイトルを設定
                                   />
                                 )}
-                            </Link>
-                          </div>
-                          <h3>{post.title}</h3>
-                          {/* 最初のpタグを30文字に制限して出力 */}
-                          <p className="category-item__text">{truncatedText}</p>
-                        </li>
-                      </div>
-                    );
-                  })}
-            </div>
-          </ul>
-          <Link
-            to={`/category/${category.toLowerCase()}`}
-            className="button"
-          >
-            {category}の一覧
-            <div className="button-left">
-              <div className="arrow"></div>
-            </div>
-          </Link>
-        </div>
-      </section>
+                              </Link>
+                            </div>
+                            <h3>{post.title}</h3>
+                            <p className="category-item__text">{truncatedText}</p>
+                          </li>
+                        </div>
+                      );
+                    })}
+              </div>
+            </ul>
+            <Link to={`/category/${category.toLowerCase()}`} className="button">
+              {category}の一覧
+              <div className="button-left">
+                <div className="arrow"></div>
+              </div>
+            </Link>
+          </div>
+        </section>
       ))}
 
-      <section>
+    <section>
         <div className="container">
         <div id="Skills" className="skills">
           <div className="container">
