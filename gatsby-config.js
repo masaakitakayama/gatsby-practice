@@ -30,7 +30,6 @@ module.exports = {
         defaults: {
           formats: [`auto`], // フォーマットを自動選択とJPEG,PNGに
           placeholder: `none`, // プレースホルダーを無効化
-          concurrency: 2,
           quality: 30, // 画質を大幅に下げる
           breakpoints: [320, 640], // ブレークポイントを最小限に
           backgroundColor: `transparent`,
