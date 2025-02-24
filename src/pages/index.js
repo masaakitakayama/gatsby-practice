@@ -190,14 +190,13 @@ const IndexPage = ({ data }) => {
 };
 
 export const query = graphql`
-  query {
-    allWpPost(sort: { date: DESC }) {
+  query($skip: Int!, $limit: Int!) {
+    allWpPost(sort: { date: DESC }, limit: $limit, skip: $skip) {
       nodes {
         id
         title
-        content
-        date
         excerpt
+        date
         slug
         categories {
           nodes {

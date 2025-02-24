@@ -9,10 +9,10 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `あなたのサイトのタイトル`, // サイトのタイトル
-    description: `サイトの説明文`, // サイトの説明文
-    author: `@gatsbyjs`, // あなたの名前または組織名
-    siteUrl: `https://takayama.cloudfree.jp/portfolio2/`, // 実際のサイトURL
+    title: `あなたのサイトのタイトル`,
+    description: `サイトの説明文`,
+    author: `@gatsbyjs`,
+    siteUrl: `https://takayama.cloudfree.jp/portfolio2/`,
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -28,15 +28,15 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`],
-          placeholder: `blurred`, // または `dominantColor`
-          quality: 80, // 画質を調整
-          breakpoints: [320, 480, 768, 1024, 1280, 1920], // ブレークポイントを調整
+          formats: [`jpg`], // JPEGのみを使用
+          placeholder: `none`, // プレースホルダーを無効化
+          quality: 30, // 画質を大幅に下げる
+          breakpoints: [768], // ブレークポイントを最小限に
           backgroundColor: `transparent`,
           tracedSVGOptions: {},
           blurredOptions: {},
-          jpgOptions: { quality: 80 },
-          pngOptions: { quality: 80 },
+          jpgOptions: { quality: 30 },
+          pngOptions: { quality: 30 },
           webpOptions: {},
           avifOptions: {},
         },
@@ -45,12 +45,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`, // サイト名
-        short_name: `starter`, // サイトの略称
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`, // 背景色
+        background_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // アイコン画像のパス
+        icon: `src/images/gatsby-icon.png`,
       },
     },
     {
@@ -61,9 +61,9 @@ module.exports = {
           useGatsbyImage: true,
         },
         schema: {
-          perPage: 20,
-          requestConcurrency: 5,
-          previewRequestConcurrency: 2,
+          perPage: 5, // 取得件数を最小限に
+          requestConcurrency: 1, // 並列処理数を最小限に
+          previewRequestConcurrency: 1, // プレビューの並列処理数を最小限に
         },
       },
     },
