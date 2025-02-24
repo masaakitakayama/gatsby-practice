@@ -9,10 +9,10 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `あなたのサイトのタイトル`, // サイトのタイトル
+    description: `サイトの説明文`, // サイトの説明文
+    author: `@gatsbyjs`, // あなたの名前または組織名
+    siteUrl: `https://takayama.cloudfree.jp/portfolio2/`, // 実際のサイトURL
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -28,15 +28,15 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`], // フォーマットを自動選択とJPEG,PNGに
-          placeholder: `none`, // プレースホルダーを無効化
-          quality: 30, // 画質を大幅に下げる
-          breakpoints: [320, 640], // ブレークポイントを最小限に
+          formats: [`auto`],
+          placeholder: `blurred`, // または `dominantColor`
+          quality: 80, // 画質を調整
+          breakpoints: [320, 480, 768, 1024, 1280, 1920], // ブレークポイントを調整
           backgroundColor: `transparent`,
           tracedSVGOptions: {},
           blurredOptions: {},
-          jpgOptions: { quality: 30 }, // JPEGの品質設定
-          pngOptions: { quality: 30 }, // PNGの品質設定
+          jpgOptions: { quality: 80 },
+          pngOptions: { quality: 80 },
           webpOptions: {},
           avifOptions: {},
         },
@@ -45,27 +45,30 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `gatsby-starter-default`, // サイト名
+        short_name: `starter`, // サイトの略称
         start_url: `/`,
-        background_color: `#663399`,
+        background_color: `#663399`, // 背景色
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`,
+        icon: `src/images/gatsby-icon.png`, // アイコン画像のパス
       },
     },
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://takayama.cloudfree.jp/portfolio2/graphql`, // WordPressのURL
+        url: `https://takayama.cloudfree.jp/portfolio2/graphql`,
         html: {
-          useGatsbyImage: true, // Gatsby Imageプラグインを使用
+          useGatsbyImage: true,
         },
         schema: {
-          perPage: 20, // 以前はデフォルトの100
-          requestConcurrency: 5, // 以前はデフォルトの15
-          previewRequestConcurrency: 2, // 以前はデフォルトの5
+          perPage: 20,
+          requestConcurrency: 5,
+          previewRequestConcurrency: 2,
         },
       },
     },
+    // パフォーマンス改善のための追加プラグイン（必要に応じて追加）
+    // `gatsby-plugin-preload-link-crossorigin`,
+    // `gatsby-plugin-webpack-bundle-analyzer`,
   ],
 };
