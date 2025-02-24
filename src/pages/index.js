@@ -9,12 +9,12 @@ import HTMLReactParser from 'html-react-parser';  // html-to-reactライブラ�
 const IndexPage = ({ data }) => {
   const posts = data?.allWpPost?.nodes;
   const categories = [
-    "Landingpages",
-    "Wordpress",
-    "Banners",
-    "Photos",
-    "Videos",
-    "Others",
+    "landingpages",
+    "wordpress",
+    "banners",
+    "photos",
+    "videos",
+    "others",
   ];
 
   return (
@@ -81,16 +81,16 @@ const IndexPage = ({ data }) => {
                       return (
                         <div className="col-12 col-md-8 col-xl-4" key={post.id}>
                           <li className="category-item">
-                            <div>
+                            {/* <div>
                               <Link to={`/${post.slug}`}>
-                                {post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData && (
+                              {post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData && (
                                   <GatsbyImage
                                     image={post.featuredImage.node.localFile.childImageSharp.gatsbyImageData}
-                                    alt={post.title} // 画像のalt属性にタイトルを設定
+                                    alt={post.title}
                                   />
                                 )}
                               </Link>
-                            </div>
+                            </div> */}
                             <h3>{post.title}</h3>
                             <p className="category-item__text">{truncatedText}</p>
                           </li>

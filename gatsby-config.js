@@ -28,7 +28,7 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`jpg`], // JPEGのみを使用
+          formats: [`auto`], // JPEGのみを使用
           placeholder: `none`, // プレースホルダーを無効化
           quality: 30, // 画質を大幅に下げる
           breakpoints: [768], // ブレークポイントを最小限に
