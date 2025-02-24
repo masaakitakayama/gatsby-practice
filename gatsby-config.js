@@ -28,15 +28,15 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`, `webp`],
-          placeholder: `blurred`,
-          quality: 50,
-          breakpoints: [750, 1080, 1366, 1920],
+          formats: [`auto`, `jpg`, `png`], // フォーマットを自動選択とJPEG,PNGに
+          placeholder: `none`, // プレースホルダーを無効化
+          quality: 30, // 画質を大幅に下げる
+          breakpoints: [320, 640], // ブレークポイントを最小限に
           backgroundColor: `transparent`,
           tracedSVGOptions: {},
           blurredOptions: {},
-          jpgOptions: {},
-          pngOptions: {},
+          jpgOptions: { quality: 30 }, // JPEGの品質設定
+          pngOptions: { quality: 30 }, // PNGの品質設定
           webpOptions: {},
           avifOptions: {},
         },
