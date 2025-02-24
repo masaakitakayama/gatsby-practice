@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import HTMLReactParser from 'html-react-parser'; // html-to-reactライブラリをインポート
@@ -28,12 +27,6 @@ const Post = ({ data }) => {
         <div className="container">
           <h2>作品詳細</h2>
           <h3>{post.title}</h3>
-          {post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData && (
-            <GatsbyImage
-              image={post.featuredImage.node.localFile.childImageSharp.gatsbyImageData}
-              alt={post.title}
-            />
-          )}
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
           <p className="category-item__text">{truncatedText}</p>
         </div>
@@ -48,15 +41,6 @@ export const query = graphql`
       id
       title
       content
-      featuredImage {
-        node {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(width: 800, layout: CONSTRAINED)
-            }
-          }
-        }
-      }
     }
   }
 `;
